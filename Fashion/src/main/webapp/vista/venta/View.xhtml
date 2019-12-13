@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VentaViewDlg" widgetVar="VentaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vistas.ViewVentaTitle}">
+            <h:form id="VentaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ventaController.selected != null}">
+                        <h:outputText value="#{vistas.ViewVentaLabel_idven}"/>
+                        <h:outputText value="#{ventaController.selected.idven}" title="#{vistas.ViewVentaTitle_idven}"/>
+                        <h:outputText value="#{vistas.ViewVentaLabel_servicio}"/>
+                        <h:outputText value="#{ventaController.selected.servicio}" title="#{vistas.ViewVentaTitle_servicio}"/>
+                        <h:outputText value="#{vistas.ViewVentaLabel_precio}"/>
+                        <h:outputText value="#{ventaController.selected.precio}" title="#{vistas.ViewVentaTitle_precio}"/>
+                        <h:outputText value="#{vistas.ViewVentaLabel_producto}"/>
+                        <h:outputText value="#{ventaController.selected.producto}" title="#{vistas.ViewVentaTitle_producto}"/>
+                        <h:outputText value="#{vistas.ViewVentaLabel_importe}"/>
+                        <h:outputText value="#{ventaController.selected.importe}" title="#{vistas.ViewVentaTitle_importe}"/>
+                        <h:outputText value="#{vistas.ViewVentaLabel_clienteIdcli}"/>
+                        <h:outputText value="#{ventaController.selected.clienteIdcli}" title="#{vistas.ViewVentaTitle_clienteIdcli}"/>
+                        <h:outputText value="#{vistas.ViewVentaLabel_personalIdper}"/>
+                        <h:outputText value="#{ventaController.selected.personalIdper}" title="#{vistas.ViewVentaTitle_personalIdper}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{vistas.Close}" onclick="VentaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

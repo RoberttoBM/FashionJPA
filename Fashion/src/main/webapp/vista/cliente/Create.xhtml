@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClienteCreateDlg" widgetVar="ClienteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vistas.CreateClienteTitle}">
+            <h:form id="ClienteCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{clienteController.selected != null}">
+                        <p:outputLabel value="#{vistas.CreateClienteLabel_nomcli}" for="nomcli" />
+                        <p:inputText id="nomcli" value="#{clienteController.selected.nomcli}" title="#{vistas.CreateClienteTitle_nomcli}" required="true" requiredMessage="#{vistas.CreateClienteRequiredMessage_nomcli}">
+                        </p:inputText>
+                            
+                        <p:outputLabel value="#{vistas.CreateClienteLabel_apecli}" for="apecli" />
+                        <p:inputText id="apecli" value="#{clienteController.selected.apecli}" title="#{vistas.CreateClienteTitle_apecli}" required="true" requiredMessage="#{vistas.CreateClienteRequiredMessage_apecli}"/>
+                        <p:outputLabel value="#{vistas.CreateClienteLabel_dnicli}" for="dnicli" />
+                        <p:inputText id="dnicli" value="#{clienteController.selected.dnicli}" title="#{vistas.CreateClienteTitle_dnicli}" required="true" requiredMessage="#{vistas.CreateClienteRequiredMessage_dnicli}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{clienteController.create}" value="#{vistas.Save}" update="display,:ClienteListForm:datalist,:growl" oncomplete="handleSubmit(args,'ClienteCreateDialog');"/>
+                    <p:commandButton value="#{vistas.Cancel}" onclick="ClienteCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

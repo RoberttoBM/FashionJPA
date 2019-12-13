@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PersonalEditDlg" widgetVar="PersonalEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vistas.EditPersonalTitle}">
+            <h:form id="PersonalEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{personalController.selected != null}">
+                        <p:outputLabel value="#{vistas.EditPersonalLabel_idper}" for="idper" />
+                        <p:inputText id="idper" value="#{personalController.selected.idper}" title="#{vistas.EditPersonalTitle_idper}" required="true" requiredMessage="#{vistas.EditPersonalRequiredMessage_idper}"/>
+                        <p:outputLabel value="#{vistas.EditPersonalLabel_nomper}" for="nomper" />
+                        <p:inputText id="nomper" value="#{personalController.selected.nomper}" title="#{vistas.EditPersonalTitle_nomper}" required="true" requiredMessage="#{vistas.EditPersonalRequiredMessage_nomper}"/>
+                        <p:outputLabel value="#{vistas.EditPersonalLabel_apeper}" for="apeper" />
+                        <p:inputText id="apeper" value="#{personalController.selected.apeper}" title="#{vistas.EditPersonalTitle_apeper}" required="true" requiredMessage="#{vistas.EditPersonalRequiredMessage_apeper}"/>
+                        <p:outputLabel value="#{vistas.EditPersonalLabel_dniper}" for="dniper" />
+                        <p:inputText id="dniper" value="#{personalController.selected.dniper}" title="#{vistas.EditPersonalTitle_dniper}" required="true" requiredMessage="#{vistas.EditPersonalRequiredMessage_dniper}"/>
+                        <p:outputLabel value="#{vistas.EditPersonalLabel_cargo}" for="cargo" />
+                        <p:inputText id="cargo" value="#{personalController.selected.cargo}" title="#{vistas.EditPersonalTitle_cargo}" required="true" requiredMessage="#{vistas.EditPersonalRequiredMessage_cargo}"/>
+                        <p:outputLabel value="#{vistas.EditPersonalLabel_tipper}" for="tipper" />
+                        <p:inputText id="tipper" value="#{personalController.selected.tipper}" title="#{vistas.EditPersonalTitle_tipper}" required="true" requiredMessage="#{vistas.EditPersonalRequiredMessage_tipper}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{personalController.update}" value="#{vistas.Save}" update="display,:PersonalListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PersonalEditDialog');"/>
+                    <p:commandButton value="#{vistas.Cancel}" onclick="PersonalEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

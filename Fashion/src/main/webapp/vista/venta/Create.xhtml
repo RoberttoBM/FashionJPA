@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VentaCreateDlg" widgetVar="VentaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vistas.CreateVentaTitle}">
+            <h:form id="VentaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ventaController.selected != null}">
+                        <p:outputLabel value="#{vistas.CreateVentaLabel_idven}" for="idven" />
+                        <p:inputText id="idven" value="#{ventaController.selected.idven}" title="#{vistas.CreateVentaTitle_idven}" required="true" requiredMessage="#{vistas.CreateVentaRequiredMessage_idven}"/>
+                        <p:outputLabel value="#{vistas.CreateVentaLabel_servicio}" for="servicio" />
+                        <p:inputText id="servicio" value="#{ventaController.selected.servicio}" title="#{vistas.CreateVentaTitle_servicio}" required="true" requiredMessage="#{vistas.CreateVentaRequiredMessage_servicio}"/>
+                        <p:outputLabel value="#{vistas.CreateVentaLabel_precio}" for="precio" />
+                        <p:inputText id="precio" value="#{ventaController.selected.precio}" title="#{vistas.CreateVentaTitle_precio}" required="true" requiredMessage="#{vistas.CreateVentaRequiredMessage_precio}"/>
+                        <p:outputLabel value="#{vistas.CreateVentaLabel_producto}" for="producto" />
+                        <p:inputText id="producto" value="#{ventaController.selected.producto}" title="#{vistas.CreateVentaTitle_producto}" required="true" requiredMessage="#{vistas.CreateVentaRequiredMessage_producto}"/>
+                        <p:outputLabel value="#{vistas.CreateVentaLabel_importe}" for="importe" />
+                        <p:inputText id="importe" value="#{ventaController.selected.importe}" title="#{vistas.CreateVentaTitle_importe}" required="true" requiredMessage="#{vistas.CreateVentaRequiredMessage_importe}"/>
+                        <p:outputLabel value="#{vistas.CreateVentaLabel_clienteIdcli}" for="clienteIdcli" />
+                        <p:selectOneMenu id="clienteIdcli" value="#{ventaController.selected.clienteIdcli}" required="true" requiredMessage="#{vistas.EditVentaRequiredMessage_clienteIdcli}">
+                            <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
+                                           var="clienteIdcliItem"
+                                           itemValue="#{clienteIdcliItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{vistas.CreateVentaLabel_personalIdper}" for="personalIdper" />
+                        <p:selectOneMenu id="personalIdper" value="#{ventaController.selected.personalIdper}" required="true" requiredMessage="#{vistas.EditVentaRequiredMessage_personalIdper}">
+                            <f:selectItems value="#{personalController.itemsAvailableSelectOne}"
+                                           var="personalIdperItem"
+                                           itemValue="#{personalIdperItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ventaController.create}" value="#{vistas.Save}" update="display,:VentaListForm:datalist,:growl" oncomplete="handleSubmit(args,'VentaCreateDialog');"/>
+                    <p:commandButton value="#{vistas.Cancel}" onclick="VentaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
